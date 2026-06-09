@@ -1,3 +1,7 @@
+"""
+Модуль для генерации тестовых конфигураций правил файрвола.
+"""
+
 import json
 import random
 import os
@@ -5,7 +9,16 @@ import os
 random.seed(42)
 
 
-def generate_rules(count):
+def generate_rules(count: int) -> list:
+    """
+    Генерирует указанное количество случайных правил.
+
+    Args:
+        count: Количество правил для генерации
+
+    Returns:
+        list: Список правил, каждое правило - список из 5 элементов
+    """
     rules = []
     for _ in range(count):
         action = random.choice(['allow', 'deny'])
@@ -17,7 +30,12 @@ def generate_rules(count):
     return rules
 
 
-def save_configs():
+def save_configs() -> None:
+    """
+    Создаёт два файла конфигураций config1.json и config2.json.
+
+    Генерирует 500 общих правил, 100 уникальных для config1 и 50 уникальных для config2.
+    """
     os.makedirs('configs', exist_ok=True)
 
     common = generate_rules(500)
@@ -45,4 +63,5 @@ def save_configs():
 
 
 if __name__ == '__main__':
+    """Запуск генерации конфигураций."""
     save_configs()

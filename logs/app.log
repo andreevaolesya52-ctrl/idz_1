@@ -41,3 +41,11 @@
 2026-06-10 02:35:54,709 - INFO - Report saved to reports/report.json
 2026-06-10 02:35:55,435 - INFO - Loaded: 226 and 226 rules
 2026-06-10 02:35:55,437 - INFO - Report saved to reports/report.json
+2026-06-10 04:29:58,133 - DEBUG - Finished reading configs/config1.json
+2026-06-10 04:29:58,135 - DEBUG - Finished reading configs/config2.json
+2026-06-10 04:29:58,135 - INFO - Loaded: 226 and 226 rules
+2026-06-10 04:29:58,142 - INFO - Report saved to reports/report.json
+2026-06-10 04:44:56,935 - DEBUG - Finished reading configs/config1.json
+2026-06-10 04:44:56,936 - DEBUG - Finished reading configs/config2.json
+2026-06-10 04:44:56,936 - INFO - Loaded: 226 and 226 rules
+2026-06-10 04:44:56,940 - INFO - Report saved to reports/report.json

@@ -1,3 +1,7 @@
+"""
+Модуль для анализа конфигураций межсетевых экранов.
+"""
+
 import json
 import logging
 from collections import defaultdict
@@ -13,7 +17,10 @@ logging.basicConfig(
 
 
 class FirewallAnalyzer:
+    """Анализатор конфигураций файрвола."""
+
     def __init__(self, path1: str, path2: str):
+        """Загружает две конфигурации."""
         self._path1 = path1
         self._path2 = path2
         self._rules1: Set[frozenset] = set()
@@ -21,6 +28,7 @@ class FirewallAnalyzer:
         self._load_with_generator()
 
     def _rule_generator(self, file_path: str) -> Iterator[list]:
+        """Генератор правил из JSON файла."""
         with open(file_path, 'r') as f:
             data = json.load(f)
             for rule in data:
@@ -28,46 +36,35 @@ class FirewallAnalyzer:
         logging.debug(f"Finished reading {file_path}")
 
     def _load_with_generator(self) -> None:
+        """Загружает правила из обоих файлов."""
         for rule in self._rule_generator(self._path1):
             self._rules1.add(frozenset(rule))
         for rule in self._rule_generator(self._path2):
             self._rules2.add(frozenset(rule))
-        logging.info(f"Loaded: {len(self._rules1)} rules from config1, {len(self._rules2)} rules from config2")
+        logging.info(f"Loaded: {len(self._rules1)} and {len(self._rules2)} rules")
 
     @property
     def diff(self) -> Tuple[Set[frozenset], Set[frozenset]]:
-        only1 = self._rules1 - self._rules2
-        only2 = self._rules2 - self._rules1
-        return only1, only2
+        """Правила только в первой и только во второй конфигурации."""
+        return self._rules1 - self._rules2, self._rules2 - self._rules1
 
     @property
     def conflicts(self) -> List[Dict[str, Any]]:
+        """Конфликты: одинаковые условия, разные действия."""
         groups = defaultdict(set)
         for rule in self._rules1 | self._rules2:
             parts = list(rule)
-            action = None
-            condition_parts = []
-            for p in parts:
-                if p == 'allow' or p == 'deny':
-                    action = p
-                else:
-                    condition_parts.append(p)
-            condition = frozenset(condition_parts)
+            action = 'allow' if 'allow' in parts else 'deny'
+            condition = frozenset(p for p in parts if p not in ('allow', 'deny'))
             groups[condition].add(action)
-
-        result = []
-        for condition, actions in groups.items():
-            if len(actions) > 1:
-                result.append({
-                    'condition': list(condition),
-                    'actions': list(actions)
-                })
-        return result
+        return [{'condition': list(c), 'actions': list(a)} for c, a in groups.items() if len(a) > 1]
 
     def superset(self) -> Tuple[bool, bool]:
+        """Проверяет, является ли одна конфигурация надмножеством другой."""
         return self._rules1.issuperset(self._rules2), self._rules2.issuperset(self._rules1)
 
     def to_dict(self) -> Dict[str, Any]:
+        """Конвертирует состояние в словарь."""
         return {
             'path1': self._path1,
             'path2': self._path2,
@@ -77,6 +74,7 @@ class FirewallAnalyzer:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'FirewallAnalyzer':
+        """Восстанавливает объект из словаря."""
         instance = cls.__new__(cls)
         instance._path1 = data['path1']
         instance._path2 = data['path2']
@@ -85,6 +83,7 @@ class FirewallAnalyzer:
         return instance
 
     def save_state(self, file_path: str) -> None:
+        """Сохраняет состояние в JSON файл."""
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, 'w') as f:
             json.dump(self.to_dict(), f, indent=2)
@@ -92,12 +91,14 @@ class FirewallAnalyzer:
 
     @classmethod
     def load_state(cls, file_path: str) -> 'FirewallAnalyzer':
+        """Загружает состояние из JSON файла."""
         with open(file_path, 'r') as f:
             data = json.load(f)
         logging.info(f"State loaded from {file_path}")
         return cls.from_dict(data)
 
     def report(self, out_file: str) -> Dict[str, Any]:
+        """Формирует отчёт и сохраняет в JSON."""
         only1, only2 = self.diff
         conf = self.conflicts
         sup1, sup2 = self.superset()

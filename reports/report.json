@@ -1,11 +1,1172 @@
 {
-  "total1": 226,
-  "total2": 226,
-  "common": 225,
-  "only_in_1": 1,
-  "only_in_2": 1,
-  "conflicts": 47,
-  "superset_1_contains_2": false,
-  "superset_2_contains_1": false,
-  "is_consistent": false
+  "summary": {
+    "total_rules_config1": 226,
+    "total_rules_config2": 226,
+    "common_rules": 225,
+    "only_in_config1": 1,
+    "only_in_config2": 1,
+    "conflicts_count": 96,
+    "config1_contains_config2": false,
+    "config2_contains_config1": false,
+    "is_fully_consistent": false
+  },
+  "details": {
+    "rules_only_in_config1": [
+      [
+        "8080",
+        "tcp",
+        "allow",
+        "10.0.0.1",
+        "192.168.1.1"
+      ]
+    ],
+    "rules_only_in_config2": [
+      [
+        "192.168.1.2",
+        "deny",
+        "53",
+        "10.0.0.2",
+        "udp"
+      ]
+    ],
+    "conflicts": [
+      {
+        "condition": [
+          "8.8.8.8",
+          "53",
+          "tcp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "udp",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "tcp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "53",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "53",
+          "udp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "10.0.0.1",
+          "icmp",
+          "10.0.0.0/8",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.1",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "443"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "53",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "443"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "10.0.0.1",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "443",
+          "icmp",
+          "10.0.0.1",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "udp",
+          "22",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "tcp",
+          "10.0.0.1",
+          "192.168.1.0/24",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "10.0.0.1",
+          "10.0.0.0/8",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "tcp",
+          "any"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "443",
+          "icmp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "443",
+          "tcp",
+          "any",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "icmp",
+          "22",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "443",
+          "10.0.0.1",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "icmp",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.1",
+          "443"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "53",
+          "icmp",
+          "10.0.0.0/8",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "10.0.0.0/8",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "443",
+          "icmp",
+          "10.0.0.0/8",
+          "any"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "icmp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "tcp",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "10.0.0.0/8",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "10.0.0.0/8",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "192.168.1.0/24",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.0/8",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.0/8",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "443",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "10.0.0.1",
+          "icmp",
+          "192.168.1.0/24",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "10.0.0.0/8",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "udp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "10.0.0.1",
+          "443"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "udp",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "443",
+          "tcp",
+          "any",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.0/8",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "443",
+          "icmp",
+          "10.0.0.0/8",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "udp",
+          "10.0.0.0/8",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "53",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "tcp",
+          "10.0.0.0/8",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "443",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "443",
+          "tcp",
+          "10.0.0.1",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "10.0.0.0/8",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "53",
+          "udp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "10.0.0.1",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "tcp",
+          "any",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "443",
+          "tcp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "tcp",
+          "10.0.0.1",
+          "10.0.0.0/8",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "10.0.0.1",
+          "icmp",
+          "22",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "22",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "icmp",
+          "10.0.0.0/8",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "443",
+          "10.0.0.1",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "icmp",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "53",
+          "icmp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "53",
+          "tcp",
+          "10.0.0.0/8",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "tcp",
+          "22",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.1",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "10.0.0.0/8",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "tcp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.1",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "53",
+          "10.0.0.1",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "443",
+          "tcp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "icmp"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.1",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "53",
+          "icmp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "53",
+          "tcp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "tcp",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "icmp",
+          "10.0.0.0/8",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "443",
+          "10.0.0.0/8",
+          "any"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "443",
+          "icmp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "22",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "443",
+          "icmp",
+          "any"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "22",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.1",
+          "22"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "22",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "udp",
+          "any",
+          "192.168.1.0/24",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "443",
+          "udp",
+          "10.0.0.0/8"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "53",
+          "icmp",
+          "10.0.0.1",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "192.168.1.0/24"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "10.0.0.0/8",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "8.8.8.8",
+          "any",
+          "udp",
+          "443"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "22",
+          "10.0.0.1"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "tcp",
+          "192.168.1.0/24",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "10.0.0.0/8",
+          "53"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      },
+      {
+        "condition": [
+          "any",
+          "icmp",
+          "80"
+        ],
+        "actions": [
+          "allow",
+          "deny"
+        ]
+      }
+    ]
+  }
 }
