@@ -1,0 +1,11 @@
+{
+  "total1": 226,
+  "total2": 226,
+  "common": 225,
+  "only_in_1": 1,
+  "only_in_2": 1,
+  "conflicts": 47,
+  "superset_1_contains_2": false,
+  "superset_2_contains_1": false,
+  "is_consistent": false
+}
