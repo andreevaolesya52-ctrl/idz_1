@@ -1,34 +1,45 @@
-import unittest
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import json
 import tempfile
+import pytest
 from src.firewall_analyzer import FirewallAnalyzer
 
-class TestFirewall(unittest.TestCase):
-    def setUp(self):
-        self.f1 = tempfile.NamedTemporaryFile(mode='w', delete=False)
-        self.f2 = tempfile.NamedTemporaryFile(mode='w', delete=False)
 
-    # ТЕСТ 1: Проверка различий (симметрической разности)
-    def test_diff(self):
-        json.dump([['allow', 'tcp', 'any', 'any', '80']], self.f1)
-        json.dump([['deny', 'udp', 'any', 'any', '443']], self.f2)
-        self.f1.close();
-        self.f2.close()
-
-        a = FirewallAnalyzer(self.f1.name, self.f2.name)
-        only1, only2 = a.diff
-        assert len(only1) == 1 and len(only2) == 1
-
-    # ТЕСТ 2: Проверка конфликтов (одинаковые условия, разные действия)
-    def test_conflicts(self):
-        json.dump([['allow', 'tcp', 'any', 'any', '80']], self.f1)
-        json.dump([['deny', 'tcp', 'any', 'any', '80']], self.f2)
-        self.f1.close();
-        self.f2.close()
-
-        a = FirewallAnalyzer(self.f1.name, self.f2.name)
-        assert len(a.conflicts) == 1
+@pytest.fixture
+def configs():
+    f1 = tempfile.NamedTemporaryFile(mode='w', delete=False)
+    f2 = tempfile.NamedTemporaryFile(mode='w', delete=False)
+    yield f1, f2
+    f1.close()
+    f2.close()
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_diff(configs):
+    f1, f2 = configs
+    json.dump([['allow', 'tcp', 'any', 'any', '80']], f1)
+    json.dump([['deny', 'udp', 'any', 'any', '443']], f2)
+    f1.close()
+    f2.close()
+
+    a = FirewallAnalyzer(f1.name, f2.name)
+    only1, only2 = a.diff
+    assert len(only1) == 1
+    assert len(only2) == 1
+
+
+def test_conflicts(configs):
+    f1, f2 = configs
+    json.dump([['allow', 'tcp', 'any', 'any', '80']], f1)
+    json.dump([['deny', 'tcp', 'any', 'any', '80']], f2)
+    f1.close()
+    f2.close()
+
+    a = FirewallAnalyzer(f1.name, f2.name)
+
+    # Просто проверяем, что конфликт найден
+    # Неважно, в каком порядке поля в frozenset
+    assert len(a.conflicts) == 1
