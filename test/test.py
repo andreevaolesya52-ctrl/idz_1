@@ -19,27 +19,29 @@ def configs():
 
 
 def test_diff(configs):
+    """Проверка поиска уникальных правил."""
     f1, f2 = configs
     json.dump([['allow', 'tcp', 'any', 'any', '80']], f1)
     json.dump([['deny', 'udp', 'any', 'any', '443']], f2)
     f1.close()
     f2.close()
-
     a = FirewallAnalyzer(f1.name, f2.name)
     only1, only2 = a.diff
-    assert len(only1) == 1
-    assert len(only2) == 1
+    assert len(only1) == 1 and len(only2) == 1
 
 
 def test_conflicts(configs):
+    """Проверка поиска конфликтов."""
     f1, f2 = configs
     json.dump([['allow', 'tcp', 'any', 'any', '80']], f1)
     json.dump([['deny', 'tcp', 'any', 'any', '80']], f2)
     f1.close()
     f2.close()
-
     a = FirewallAnalyzer(f1.name, f2.name)
-
-    # Просто проверяем, что конфликт найден
-    # Неважно, в каком порядке поля в frozenset
     assert len(a.conflicts) == 1
+
+
+def test_file_not_found():
+    """Проверка: нет файла -> ошибка."""
+    with pytest.raises(FileNotFoundError):
+        FirewallAnalyzer('no.json', 'no.json')

@@ -49,3 +49,7 @@
 2026-06-10 04:44:56,936 - DEBUG - Finished reading configs/config2.json
 2026-06-10 04:44:56,936 - INFO - Loaded: 226 and 226 rules
 2026-06-10 04:44:56,940 - INFO - Report saved to reports/report.json
+2026-06-10 04:59:29,646 - DEBUG - Finished reading configs/config1.json
+2026-06-10 04:59:29,647 - DEBUG - Finished reading configs/config2.json
+2026-06-10 04:59:29,647 - INFO - Loaded: 226 and 226 rules
+2026-06-10 04:59:29,651 - INFO - Report saved to reports/report.json
